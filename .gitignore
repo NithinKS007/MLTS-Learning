@@ -1,0 +1,17 @@
+# Node modules (all folders)
+**/node_modules/
+
+# Build output (all folders)
+**/dist/
+
+# Env files everywhere (root + nested folders)
+**/.env
+**/.env.*
+
+# Certificates (ignore all cert-related files inside certs folder and subfolders)
+certs/**/*.key
+certs/**/*.crt
+certs/**/*.srl
+
+# Optional: ignore everything inside certs (stronger rule)
+certs/**
