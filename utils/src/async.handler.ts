@@ -37,8 +37,8 @@ export const asyncHandler = <P, ResBody, ReqBody, ReqQuery>(
   controllerMethod: (
     req: Request<P, ResBody, ReqBody, ReqQuery>,
     res: Response<ResBody>,
-    next: NextFunction
-  ) => Promise<void>
+    next: NextFunction,
+  ) => Promise<void>,
 ): RequestHandler<P, ResBody, ReqBody, ReqQuery> => {
   // Return a synchronous function that Express can register as a route handler.
   // Inside, we call the async controller and attach .catch(next) to forward errors.

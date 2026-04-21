@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 /**
  * utils/src/certLoader.ts — Certificate File Loader
@@ -73,7 +73,7 @@ export class CertLoader {
   findCertPair(serviceName: string): { cert: Buffer; key: Buffer } {
     return {
       cert: this.findBuffer(`${serviceName}.crt`),
-      key: this.findBuffer(`${serviceName}.key`)
+      key: this.findBuffer(`${serviceName}.key`),
     };
   }
 
@@ -87,6 +87,6 @@ export class CertLoader {
    * The CA's PRIVATE KEY (ca.key) is what must be guarded — it can mint new certs.
    */
   findCA(): Buffer {
-    return this.findBuffer('ca.crt');
+    return this.findBuffer("ca.crt");
   }
 }

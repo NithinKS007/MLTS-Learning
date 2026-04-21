@@ -1,7 +1,7 @@
-import express, { Express } from 'express';
-import https from 'https';
-import { ICradle } from './container';
-import { CertLoader, errorMiddleware } from 'utils';
+import express, { Express } from "express";
+import https from "https";
+import { ICradle } from "./container";
+import { CertLoader, errorMiddleware } from "utils";
 
 /**
  * service-b/src/app.ts — HTTPS Application with mTLS Enforcement
@@ -37,7 +37,7 @@ export class Application {
    * This endpoint is ONLY accessible via mTLS (HTTPS with client cert).
    */
   private setupRoutes(): void {
-    this.app.get('/api/b', this.cradle.processController.handle);
+    this.app.get("/api/b", this.cradle.processController.handle);
   }
 
   /**
@@ -92,26 +92,34 @@ export class Application {
       const ca = loader.findCA();
 
       // Load Service B's own identity + proof of ownership
-      const { cert, key } = loader.findCertPair('service-b');
+      const { cert, key } = loader.findCertPair("service-b");
 
       // Create the HTTPS server with full mTLS enforcement
-      const server = https.createServer({
-        ca,                       // Trust anchor: verify client certs against this CA
-        cert,                     // Server identity: presented to clients
-        key,                      // Server proof: proves ownership of the cert
-        requestCert: true,        // ← THE mTLS FLAG: "send me your certificate"
-        rejectUnauthorized: true  // ← ENFORCEMENT: reject invalid/missing client certs
-      }, this.app);
+      const server = https.createServer(
+        {
+          ca, // Trust anchor: verify client certs against this CA
+          cert, // Server identity: presented to clients
+          key, // Server proof: proves ownership of the cert
+          requestCert: true, // ← THE mTLS FLAG: "send me your certificate"
+          rejectUnauthorized: true, // ← ENFORCEMENT: reject invalid/missing client certs
+        },
+        this.app,
+      );
 
       server.listen(config.port, () => {
-        this.cradle.logService.info(`Service B (mTLS) listening on port ${config.port}`);
+        this.cradle.logService.info(
+          `Service B (mTLS) listening on port ${config.port}`,
+        );
       });
     } catch (error: unknown) {
       // Type-safe error handling without 'as' assertions
       if (error instanceof Error) {
-        this.cradle.logService.error('Failed to start Service B', error);
+        this.cradle.logService.error("Failed to start Service B", error);
       } else {
-        this.cradle.logService.error('Failed to start Service B', new Error(String(error)));
+        this.cradle.logService.error(
+          "Failed to start Service B",
+          new Error(String(error)),
+        );
       }
       process.exit(1);
     }

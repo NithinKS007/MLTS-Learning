@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
-import { IProcessService } from '../services/process.service';
-import { asyncHandler, sendResponse, StatusCodes, isTLSSocket } from 'utils';
+import { Request, Response } from "express";
+import { IProcessService } from "../services/process.service";
+import { asyncHandler, sendResponse, StatusCodes, isTLSSocket } from "utils";
 
 /**
  * service-b/src/controllers/process.controller.ts — mTLS Request Handler
@@ -71,15 +71,10 @@ export class ProcessController {
 
     // Return success with Service B's metadata
     const data = {
-      service: 'service-b',
-      timestamp: new Date().toISOString()
+      service: "service-b",
+      timestamp: new Date().toISOString(),
     };
 
-    sendResponse(
-      res,
-      StatusCodes.OK,
-      data,
-      result.message
-    );
+    sendResponse(res, StatusCodes.OK, data, result.message);
   });
 }

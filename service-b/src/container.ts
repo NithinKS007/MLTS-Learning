@@ -1,8 +1,8 @@
-import { createContainer, asClass, InjectionMode } from 'awilix';
-import { ConfigProvider } from './config/config';
-import { LogService } from 'utils';
-import { ProcessService } from './services/process.service';
-import { ProcessController } from './controllers/process.controller';
+import { createContainer, asClass, InjectionMode } from "awilix";
+import { ConfigProvider } from "./config/config";
+import { LogService } from "utils";
+import { ProcessService } from "./services/process.service";
+import { ProcessController } from "./controllers/process.controller";
 
 /**
  * service-b/src/container.ts — Awilix Dependency Injection Container
@@ -27,14 +27,14 @@ export interface ICradle {
 }
 
 const container = createContainer<ICradle>({
-  injectionMode: InjectionMode.PROXY
+  injectionMode: InjectionMode.PROXY,
 });
 
 container.register({
   configProvider: asClass(ConfigProvider).singleton(),
   logService: asClass(LogService).singleton(),
   processService: asClass(ProcessService).singleton(),
-  processController: asClass(ProcessController).singleton()
+  processController: asClass(ProcessController).singleton(),
 });
 
 export default container;

@@ -25,18 +25,18 @@ import { Response } from "express";
  * TypeScript will error if you pass an object instead of a string.
  */
 export const sendResponse = <T>(
-    res: Response,
-    statusCode: number,
-    data: T | null = null,
-    message: string,
+  res: Response,
+  statusCode: number,
+  data: T | null = null,
+  message: string,
 ) => {
-    // Derive success from status code range — 2xx = success, everything else = failure
-    const success = statusCode >= 200 && statusCode < 300;
+  // Derive success from status code range — 2xx = success, everything else = failure
+  const success = statusCode >= 200 && statusCode < 300;
 
-    return res.status(statusCode).json({
-        success,
-        status: statusCode,
-        message,
-        data,
-    });
+  return res.status(statusCode).json({
+    success,
+    status: statusCode,
+    message,
+    data,
+  });
 };

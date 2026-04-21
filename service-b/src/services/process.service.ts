@@ -1,4 +1,4 @@
-import { IServiceResponse, LogService } from 'utils';
+import { IServiceResponse, LogService } from "utils";
 
 /**
  * service-b/src/services/process.service.ts — Identity Authorization Service
@@ -54,23 +54,23 @@ export class ProcessService implements IProcessService {
     // With rejectUnauthorized: true, Node.js should block this at the TLS layer.
     // This is a DEFENSE-IN-DEPTH check in case the server config is loosened.
     if (!callerCn) {
-      this.logService.warn('Anonymous request rejected');
-      return { success: false, message: 'Client certificate required.', data: null };
+      this.logService.warn("Anonymous request rejected");
+      return { success: false, message: "Client certificate required.", data: null };
     }
 
     // Case 2: Valid certificate, but from an unauthorized service.
     // Example: CN=logging-service has a valid cert, but isn't allowed here.
-    if (callerCn !== 'service-a') {
+    if (callerCn !== "service-a") {
       this.logService.warn(`Unauthorized access attempt from ${callerCn}`);
-      return { success: false, message: 'Identity untrusted.', data: null };
+      return { success: false, message: "Identity untrusted.", data: null };
     }
 
     // Case 3: Authorized — CN matches the allowlist.
     this.logService.info(`Securely processed request for ${callerCn}`);
     return {
       success: true,
-      message: 'Service B processed the data securely.',
-      data: null
+      message: "Service B processed the data securely.",
+      data: null,
     };
   }
 }

@@ -1,5 +1,5 @@
-import container from './container';
-import { Application } from './app';
+import container from "./container";
+import { Application } from "./app";
 
 /**
  * service-b/src/server.ts — Application Entry Point

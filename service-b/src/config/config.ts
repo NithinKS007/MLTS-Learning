@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
-import path from 'path';
+import dotenv from "dotenv";
+import path from "path";
 
 /**
  * service-b/src/config/config.ts — Environment Configuration
@@ -23,8 +23,8 @@ export class ConfigProvider {
   constructor() {
     dotenv.config();
     this.config = {
-      port: parseInt(process.env.SERVICE_B_PORT || '3002', 10),
-      certsDir: process.env.CERTS_DIR || path.join(__dirname, '../../../certs')
+      port: parseInt(process.env.SERVICE_B_PORT || "3002", 10),
+      certsDir: process.env.CERTS_DIR || path.join(__dirname, "../../../certs"),
     };
   }
 

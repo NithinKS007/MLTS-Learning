@@ -26,18 +26,18 @@ import { AppError } from "./error.helper";
  * (after all routes) — otherwise Express won't route errors to it.
  */
 export const errorMiddleware = (
-    err: AppError,
-    _req: Request,
-    res: Response,
-    _next: NextFunction,
+  err: AppError,
+  _req: Request,
+  res: Response,
+  _next: NextFunction,
 ) => {
-    // Log the full error for server-side debugging
-    console.error('Error occurred:', err);
+  // Log the full error for server-side debugging
+  console.error("Error occurred:", err);
 
-    // Use the error's statusCode if it's an AppError, otherwise 500
-    const statusCode = err.statusCode || StatusCodes.InternalServerError;
-    const message = err.message || "INTERNAL SERVER ERROR";
+  // Use the error's statusCode if it's an AppError, otherwise 500
+  const statusCode = err.statusCode || StatusCodes.InternalServerError;
+  const message = err.message || "INTERNAL SERVER ERROR";
 
-    // Send standardized error response to the client
-    sendResponse(res, statusCode, null, message);
+  // Send standardized error response to the client
+  sendResponse(res, statusCode, null, message);
 };

@@ -1,4 +1,4 @@
-import pino from 'pino';
+import pino from "pino";
 
 /**
  * utils/src/logService.ts — Centralized Structured Logger
@@ -31,9 +31,9 @@ export class LogService implements ILogService {
    */
   private readonly logger = pino({
     transport: {
-      target: 'pino-pretty',
-      options: { colorize: true }
-    }
+      target: "pino-pretty",
+      options: { colorize: true },
+    },
   });
 
   /** Log informational messages (e.g., "Service started", "Request processed") */

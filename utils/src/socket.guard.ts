@@ -27,6 +27,6 @@ import { TLSSocket } from "tls";
  * since it only listens on HTTPS), the socket would be a plain net.Socket
  * and this guard would correctly return false, preventing a runtime crash.
  */
-export function isTLSSocket(socket: unknown): socket is TLSSocket {
+export const isTLSSocket = (socket: unknown): socket is TLSSocket => {
   return socket instanceof TLSSocket;
-}
+};

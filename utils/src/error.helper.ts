@@ -21,34 +21,34 @@ import { StatusCodes } from "./http.status.codes";
 
 /** Base error class — all application errors extend this */
 export class AppError extends Error {
-    /** HTTP status code to return when this error reaches the middleware */
-    statusCode: number;
+  /** HTTP status code to return when this error reaches the middleware */
+  statusCode: number;
 
-    constructor(message: string, statusCode: number) {
-        super(message); // Set Error.message
-        this.statusCode = statusCode;
-    }
+  constructor(message: string, statusCode: number) {
+    super(message); // Set Error.message
+    this.statusCode = statusCode;
+  }
 }
 
 /** 400 Bad Request — client sent malformed or invalid data */
 export class ValidationError extends AppError {
-    constructor(message: string) {
-        super(message, StatusCodes.BadRequest);
-    }
+  constructor(message: string) {
+    super(message, StatusCodes.BadRequest);
+  }
 }
 
 /** 404 Not Found — the requested resource does not exist */
 export class NotFoundError extends AppError {
-    constructor(message: string) {
-        super(message, StatusCodes.NotFound);
-    }
+  constructor(message: string) {
+    super(message, StatusCodes.NotFound);
+  }
 }
 
 /** 401 Unauthorized — authentication is required but missing or invalid */
 export class UnauthorizedError extends AppError {
-    constructor(message: string) {
-        super(message, StatusCodes.Unauthorized);
-    }
+  constructor(message: string) {
+    super(message, StatusCodes.Unauthorized);
+  }
 }
 
 /**
@@ -58,21 +58,21 @@ export class UnauthorizedError extends AppError {
  * but the CN is not in the allowlist for this endpoint.
  */
 export class ForbiddenError extends AppError {
-    constructor(message: string) {
-        super(message, StatusCodes.Forbidden);
-    }
+  constructor(message: string) {
+    super(message, StatusCodes.Forbidden);
+  }
 }
 
 /** 409 Conflict — operation conflicts with existing state (e.g., duplicate) */
 export class ConflictError extends AppError {
-    constructor(message: string) {
-        super(message, StatusCodes.Conflict);
-    }
+  constructor(message: string) {
+    super(message, StatusCodes.Conflict);
+  }
 }
 
 /** 500 Internal Server Error — unexpected failure in a database or service layer */
 export class DatabaseError extends AppError {
-    constructor(message: string) {
-        super(message, StatusCodes.InternalServerError);
-    }
+  constructor(message: string) {
+    super(message, StatusCodes.InternalServerError);
+  }
 }

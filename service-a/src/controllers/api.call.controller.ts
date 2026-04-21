@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
-import { ApiCallService } from '../services/api.call.service';
-import { ConfigProvider } from '../config/config';
-import { asyncHandler, sendResponse, StatusCodes } from 'utils';
+import { Request, Response } from "express";
+import { ApiCallService } from "../services/api.call.service";
+import { ConfigProvider } from "../config/config";
+import { asyncHandler, sendResponse, StatusCodes } from "utils";
 
 /**
  * service-a/src/controllers/api.call.controller.ts — HTTP Request Handler
@@ -25,7 +25,13 @@ export class ApiCallController {
    * Awilix injects dependencies via the destructured cradle proxy.
    * The property names must match exactly what's registered in container.ts.
    */
-  constructor({ apiCallService, configProvider }: { apiCallService: ApiCallService, configProvider: ConfigProvider }) {
+  constructor({
+    apiCallService,
+    configProvider,
+  }: {
+    apiCallService: ApiCallService;
+    configProvider: ConfigProvider;
+  }) {
     this.apiCallService = apiCallService;
     this.configProvider = configProvider;
   }
@@ -44,20 +50,20 @@ export class ApiCallController {
 
     // Make the mTLS call to Service B
     // The generic tells TypeScript: "I expect Service B to return { message, service }"
-    const dataFromB = await this.apiCallService.fetchData<{ message: string; service: string }>(config.serviceBUrl);
+    const dataFromB = await this.apiCallService.fetchData<{
+      message: string;
+      service: string;
+    }>(config.serviceBUrl);
 
     // Compose the response — includes Service A's own metadata + data from Service B
     const data = {
-      service: 'service-a',
-      message: 'Service A successfully called Service B',
-      dataFromB
+      service: "service-a",
+      message: "Service A successfully called Service B",
+      dataFromB,
     };
 
-    sendResponse(
-      res,
-      StatusCodes.OK,
-      data,
-      'Data fetched successfully from Service B'
-    );
+    const message = "Data fetched successfully from Service B";
+
+    sendResponse(res, StatusCodes.OK, data, message);
   });
 }

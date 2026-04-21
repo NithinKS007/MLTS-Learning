@@ -1,6 +1,6 @@
-import express, { Express } from 'express';
-import { ICradle } from './container';
-import { errorMiddleware } from 'utils';
+import express, { Express } from "express";
+import { ICradle } from "./container";
+import { errorMiddleware } from "utils";
 
 /**
  * service-a/src/app.ts — Express Application Setup
@@ -38,7 +38,7 @@ export class Application {
    * The controller will internally make an mTLS call to Service B.
    */
   private setupRoutes(): void {
-    this.app.get('/api/a', this.cradle.apiCallController.handle);
+    this.app.get("/api/a", this.cradle.apiCallController.handle);
   }
 
   /**

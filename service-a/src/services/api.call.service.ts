@@ -1,7 +1,7 @@
-import axios, { AxiosInstance } from 'axios';
-import https from 'https';
-import { ConfigProvider } from '../config/config';
-import { CertLoader } from 'utils';
+import axios, { AxiosInstance } from "axios";
+import https from "https";
+import { ConfigProvider } from "../config/config";
+import { CertLoader } from "utils";
 
 /**
  * service-a/src/services/api.call.service.ts — mTLS Client Service
@@ -85,21 +85,21 @@ export class ApiCallService implements IApiCallService {
       const ca = loader.findCA();
 
       // Load Service A's own identity (cert + private key)
-      const { cert, key } = loader.findCertPair('service-a');
+      const { cert, key } = loader.findCertPair("service-a");
 
       // Create an HTTPS agent with full mTLS configuration
       const agent = new https.Agent({
-        ca,                        // Who do I trust? → Our internal CA
-        cert,                      // Who am I? → service-a
-        key,                       // Prove it → my private key
-        rejectUnauthorized: true,  // Enforce server certificate validation
-        keepAlive: true            // Reuse TLS sessions for performance
+        ca, // Who do I trust? → Our internal CA
+        cert, // Who am I? → service-a
+        key, // Prove it → my private key
+        rejectUnauthorized: true, // Enforce server certificate validation
+        keepAlive: true, // Reuse TLS sessions for performance
       });
 
       // Create an Axios instance bound to the mTLS agent
       this.client = axios.create({
         httpsAgent: agent,
-        timeout: 5000  // 5-second timeout to prevent hanging connections
+        timeout: 5000, // 5-second timeout to prevent hanging connections
       });
     }
 
