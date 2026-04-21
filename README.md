@@ -1,4 +1,4 @@
-# Advanced mTLS Microservices (Awilix & Repository Pattern)
+# Advanced mTLS Microservices
 
 This project demonstrates a production-grade mTLS implementation between two isolated services. 
 
